@@ -40,7 +40,7 @@ cd ..
 # google-test (gtest) 1.7.0
 wget -c https://github.com/google/googletest/archive/release-1.7.0.tar.gz
 [ -d release-1.7.0.tar.gz ] || tar -xvf release-1.7.0.tar.gz
-mv googletest-release-1.7.0 src/gtest-1.7.0
+mv googletest-release-1.7.0 gtest-1.7.0
 
 # zeromq 4.0.3
 wget -c http://download.zeromq.org/zeromq-4.0.3.tar.gz

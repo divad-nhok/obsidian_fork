@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 #BUILD ALL GDF PREREQUISITES
 #MUST HAVE TAR and UNZIP installed.
@@ -10,7 +10,6 @@ mkdir lib
 mkdir bin
 export PREREQ_DIR=$(pwd)
 cd src
-
 
 # Boost 1.55
 wget -c http://downloads.sourceforge.net/project/boost/boost/1.55.0/boost_1_55_0.tar.gz
@@ -31,16 +30,17 @@ make install
 cd ../..
 
 # google-log (glog) 0.3.3
-wget -c http://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
-[ -d glog-0.3.3 ] || tar -xvf glog-0.3.3.tar.gz
+wget -c https://github.com/google/glog/archive/v0.3.3.tar.gz
+[ -d v0.3.3.tar.gz] || tar -xvf v0.3.3.tar.gz
 cd glog-0.3.3
 ./configure --prefix=$PREREQ_DIR
 make install
 cd ..
 
 # google-test (gtest) 1.7.0
-wget -c http://googletest.googlecode.com/files/gtest-1.7.0.zip
-[ -d gtest-1.7.0 ] || unzip -o gtest-1.7.0.zip
+wget -c https://github.com/google/googletest/archive/release-1.7.0.tar.gz
+[ -d release-1.7.0.tar.gz ] || tar -xvf release-1.7.0.tar.gz
+mv googletest-release-1.7.0 src/gtest-1.7.0
 
 # zeromq 4.0.3
 wget -c http://download.zeromq.org/zeromq-4.0.3.tar.gz
@@ -57,7 +57,7 @@ wget -c https://github.com/zeromq/cppzmq/archive/master.zip -O cppzmq-master.zip
 cp cppzmq-master/zmq.hpp $PREREQ_DIR/include
 
 # Protocol-buffers (protobuf) 2.5.0
-wget -c http://protobuf.googlecode.com/files/protobuf-2.5.0.tar.gz
+wget -c https://github.com/protocolbuffers/protobuf/releases/download/v2.5.0/protobuf-2.5.0.tar.gz
 [ -d protobuf-2.5.0 ] || tar -xvf protobuf-2.5.0.tar.gz
 cd protobuf-2.5.0
 ./configure --prefix=$PREREQ_DIR
@@ -66,10 +66,11 @@ make install
 cd ..
 
 # leveldb
-wget -c https://leveldb.googlecode.com/files/leveldb-1.15.0.tar.gz
-[ -d leveldb-1.15.0 ] || tar -xvf leveldb-1.15.0.tar.gz
-cd leveldb-1.15.0
+wget -c https://github.com/google/leveldb/archive/v1.15.tar.gz
+[ -d v1.15 ] || tar -xvf v1.15.tar.gz
+cd leveldb-1.15
 make -j$(nproc)
 cp libleveldb.a libleveldb.so libleveldb.so.1 libleveldb.so.1.15 $PREREQ_DIR/lib
 cp -r include/leveldb $PREREQ_DIR/include/
 cd ..
+
